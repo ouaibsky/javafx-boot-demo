@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane id="borderPane" prefHeight="493.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.icroco.boot.javafx.MainPane">
+   <bottom>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" onMouseClicked="#onClicked" text="Button" />
+        </items>
+      </ToolBar>
+   </bottom>
+   <left>
+      <VBox prefHeight="413.0" prefWidth="174.0" BorderPane.alignment="CENTER">
+         <children>
+            <Hyperlink prefHeight="25.0" prefWidth="176.0" text="Hyperlink" />
+            <Hyperlink prefHeight="25.0" prefWidth="175.0" text="Hyperlink" />
+         </children></VBox>
+   </left>
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false"  text="Button" />
+            <Button mnemonicParsing="false" text="Button" />
+        </buttons>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </top>
+</BorderPane>
