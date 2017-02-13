@@ -32,4 +32,7 @@ public class MainPane  extends AbstractFxmlView {
     public void onClicked(MouseEvent mouseEvent) {
         System.out.println("clicked: "+name);
     }
+
+    public void lblClicked(MouseEvent mouseEvent) {
+    }
 }
