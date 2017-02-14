@@ -64,3 +64,15 @@
 }
 .hyperlink:hover  {
 }
+
+
+.status-bar {
+/*
+ -fx-background-color: rgb(20, 20, 20);
+*/
+-fx-background-insets: 0;
+}
+
+#main-pane {
+ -fx-background-color: #F2F2F2;
+}

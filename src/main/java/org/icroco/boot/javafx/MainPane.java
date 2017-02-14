@@ -16,23 +16,13 @@ package org.icroco.boot.javafx;/*
 
 import de.felixroske.jfxsupport.AbstractFxmlView;
 import de.felixroske.jfxsupport.FXMLView;
-import javafx.scene.input.MouseEvent;
-import org.springframework.beans.factory.annotation.Value;
 
 @FXMLView("/fxml/main.fxml")
 public class MainPane  extends AbstractFxmlView {
-
-    @Value("${foo.bar}")
-    private String name;
 
     public MainPane() {
         setTitle("This is a test");
     }
 
-    public void onClicked(MouseEvent mouseEvent) {
-        System.out.println("clicked: "+name);
-    }
 
-    public void lblClicked(MouseEvent mouseEvent) {
-    }
 }
