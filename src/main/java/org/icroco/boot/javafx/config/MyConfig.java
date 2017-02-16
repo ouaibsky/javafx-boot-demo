@@ -16,6 +16,7 @@ package org.icroco.boot.javafx.config;/*
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.icroco.boot.javafx.pref.SalesAccount;
 import org.icroco.boot.javafx.pref.UserPref;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,20 +37,24 @@ public class MyConfig {
 	@Inject
     UserPref userPreferences;
 
+
+	@Inject
+	ObjectMapper mapper;
+
 	@Bean
 	ObjectMapper mapper() {
 		return new ObjectMapper();
 	}
 
 	@Bean
-	UserPref userPref() {
+	UserPref userPref(ObjectMapper mapper) {
 		File f = new File(outputFileName);
 		UserPref pref = null;
 		if (f.exists()) {
 			FileInputStream inputStream = null;
 			try {
 				inputStream = new FileInputStream(outputFileName);
-				pref = new ObjectMapper().readValue(inputStream, UserPref.class);
+				pref = mapper.readValue(inputStream, UserPref.class);
 				log.info("Read from: {}, userPref: ", outputFileName, pref);
 				return pref;
 			}
@@ -58,7 +63,9 @@ public class MyConfig {
 			}
 		}
 
-		pref = UserPref.builder().traderName(System.getProperty("user.name")).build();
+		pref = UserPref.builder()
+				.salesAccount(SalesAccount.builder().login(System.getProperty("user.name")).build())
+				.build();
 
 		return pref;
 	}
@@ -70,7 +77,7 @@ public class MyConfig {
 
 		FileOutputStream out = new FileOutputStream(outputFileName);
 
-		new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(out, userPreferences);
+		mapper.writerWithDefaultPrettyPrinter().writeValue(out, userPreferences);
 		log.info("Saved: {}", outputFileName);
 	}
 }

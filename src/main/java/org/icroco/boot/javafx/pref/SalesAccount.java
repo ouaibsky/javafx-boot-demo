@@ -14,21 +14,17 @@ package org.icroco.boot.javafx.pref;/*
  * limitations under the License.
  */
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
-@ToString
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserPref {
-    String test;
-    SalesAccount salesAccount;
-    TraderAccount traderAccount;
+public class SalesAccount extends Account {
+    @Builder
+    public SalesAccount(String login) {
+        super(login);
+    }
 }
