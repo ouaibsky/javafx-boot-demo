@@ -3,19 +3,22 @@ package org.icroco.boot.javafx.ref;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import lombok.extern.slf4j.Slf4j;
 import org.icroco.boot.javafx.MainPane;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.inject.Inject;
 
 @FXMLController
+@Slf4j
 public class UnderlyingController {
 
-	@Autowired
+	@Inject
     MainPane starter;
 
 
     @FXML
     public void initialize() {
-        System.out.println("UnderlyingView initializing");
+        log.info("UnderlyingView initializing");
     }
 
     public void topButtonClicked(ActionEvent actionEvent) {

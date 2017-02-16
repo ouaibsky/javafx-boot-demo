@@ -10,8 +10,8 @@ import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 import org.icroco.boot.javafx.MainPane;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.inject.Inject;
 import java.util.UUID;
 
 @FXMLController
@@ -20,7 +20,7 @@ public class RfqSearchController {
 
     private GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
 
-	@Autowired
+	@Inject
     MainPane starter;
 
 	@FXML
@@ -28,6 +28,7 @@ public class RfqSearchController {
     @FXML
     CustomTextField uuidTextField;
     @FXML
+
     public void initialize() {
         final Glyph value = fontAwesome.create(FontAwesome.Glyph.SEARCH).color(Color.LIGHTGRAY);
         bizIdTextField.setRight(value);
