@@ -2,11 +2,14 @@ package org.icroco.boot.javafx;
 
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
+import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.StatusBar;
 import org.controlsfx.glyphfont.FontAwesome;
@@ -36,8 +39,13 @@ public class MainPanePresenter {
 	@FXML
 	StatusBar topStatusBar;
 
-    PopOver popOver = new PopOver();
+    @FXML
+    HiddenSidesPane hiddenPane;
 
+    @FXML
+    VBox actionMenu;
+
+    PopOver popOver = new PopOver();
 
     @FXML
     private ScrollPane mainScrollPane;
@@ -46,12 +54,16 @@ public class MainPanePresenter {
     public void initialize() {
         log.info("MainPanePresenter --> initialize");
         final Label gear = new Label("", new Glyph("FontAwesome", FontAwesome.Glyph.GEAR));
+        final Label hamburger = new Label("", new Glyph("FontAwesome", FontAwesome.Glyph.BARS));
         Button test = new Button("test");
         test.setOnMouseClicked(e -> popOver.hide());
         popOver.setContentNode(test);
         popOver.setArrowLocation(PopOver.ArrowLocation.TOP_LEFT);
         gear.setOnMouseClicked(e -> popOver.show(gear));
+        hiddenPane.setTriggerDistance(25);
+        hamburger.setOnMouseClicked((MouseEvent e) -> hiddenPane.setPinnedSide(hiddenPane.getPinnedSide() != null ? null : Side.LEFT));
         topStatusBar.getRightItems().add(gear);
+        topStatusBar.getLeftItems().add(hamburger);
         mainScrollPane.setContent(underlyingView.getView());
     }
 

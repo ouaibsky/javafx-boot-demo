@@ -63,21 +63,26 @@ public class MyConfig {
 			}
 		}
 
-		pref = UserPref.builder()
-				.salesAccount(SalesAccount.builder().login(System.getProperty("user.name")).build())
-				.build();
-
+		pref = new UserPref();
+		pref.setSalesAccount(SalesAccount.builder().login(System.getProperty("user.name")).build());
+				//pref.(SalesAccount.builder().login(System.getProperty("user.name")).build())
+				//.foo(new SimpleStringProperty(null, "foo", System.getProperty("user.name")))
+				//.build();
 		return pref;
 	}
 
 	@PreDestroy
-	public void preDestroy() throws IOException {
+	public void preDestroy()  {
 		File f = new File(outputFileName);
 		f.getParentFile().mkdirs();
 
-		FileOutputStream out = new FileOutputStream(outputFileName);
+		try {
+			FileOutputStream out = new FileOutputStream(outputFileName);
 
-		mapper.writerWithDefaultPrettyPrinter().writeValue(out, userPreferences);
+			mapper.writerWithDefaultPrettyPrinter().writeValue(out, userPreferences);
+		} catch (IOException ex) {
+			log.error("Failed to serialized", ex);
+		}
 		log.info("Saved: {}", outputFileName);
 	}
 }

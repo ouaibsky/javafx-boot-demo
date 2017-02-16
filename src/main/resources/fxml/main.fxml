@@ -4,25 +4,32 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.HiddenSidesPane?>
 <?import org.controlsfx.control.StatusBar?>
 
-        <!--stylesheets="@modena_dark.css"-->
-<BorderPane id="borderPane" prefHeight="600.0" prefWidth="800.0"  xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.icroco.boot.javafx.MainPanePresenter">
-   <left>
-      <VBox prefHeight="413.0" prefWidth="174.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#referentialOnClicked" text="Referential" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#findRequestOnClicked" text="Find Request" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#scenarioOnClicked" text="Scenario" />
-         </children></VBox>
-   </left>
+<!--stylesheets="@modena_dark.css"-->
+
+<BorderPane id="borderPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.icroco.boot.javafx.MainPanePresenter">
    <bottom>
       <StatusBar fx:id="bottomStatusBar" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <ScrollPane fx:id="mainScrollPane" focusTraversable="false" BorderPane.alignment="CENTER" />
+      <HiddenSidesPane fx:id="hiddenPane" BorderPane.alignment="CENTER">
+         <content>
+            <ScrollPane fx:id="mainScrollPane" focusTraversable="false" BorderPane.alignment="CENTER" />
+         </content>
+         <left>
+            <VBox fx:id="actionMenu" prefHeight="413.0" prefWidth="174.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#referentialOnClicked" text="Referential" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#findRequestOnClicked" text="Find Request" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#scenarioOnClicked" text="Scenario" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </left>
+      </HiddenSidesPane>
    </center>
    <top>
-      <StatusBar fx:id="topStatusBar" prefHeight="200.0" prefWidth="200.0" text="" BorderPane.alignment="CENTER" />
+      <StatusBar fx:id="topStatusBar" text="" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>
