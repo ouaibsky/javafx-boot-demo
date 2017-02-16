@@ -1,13 +1,13 @@
 package org.icroco.boot.javafx;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import javafx.stage.Stage;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
-import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import(JacksonAutoConfiguration.class)
+@EnableAspectJAutoProxy(proxyTargetClass = false)
 public class BootJavafxApplication extends AbstractJavaFxApplicationSupport  {
 
 	@Override

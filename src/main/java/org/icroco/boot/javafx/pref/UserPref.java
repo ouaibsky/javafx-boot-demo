@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javafx.beans.property.SimpleStringProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,7 +27,6 @@ import lombok.ToString;
 
 @Getter
 @Setter()
-//@Accessors(chain = true)
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -49,15 +49,4 @@ public class UserPref {
 	public void setLogin(final String login) {
 		this.login.setValue(login);
 	}
-
-	// @JsonProperty(value = "foo")
-	// public String getFoo() {
-	// return foo.getValue();
-	// }
-	//
-	// @JsonProperty(value = "foo")
-	//
-	// public void setFoo(String value) {
-	// foo.setValue(value);
-	// }
 }

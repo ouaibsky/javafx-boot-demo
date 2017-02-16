@@ -16,8 +16,10 @@ package org.icroco.boot.javafx.config;/*
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.icroco.boot.javafx.MainPanePresenter;
 import org.icroco.boot.javafx.pref.SalesAccount;
 import org.icroco.boot.javafx.pref.UserPref;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,6 +31,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Configuration
+@AutoConfigureBefore(MainPanePresenter.class)
 @Slf4j
 public class MyConfig {
 	static String outputFileName = System.getProperty("user.home") + File.separatorChar
@@ -36,7 +39,6 @@ public class MyConfig {
 
 	@Inject
     UserPref userPreferences;
-
 
 	@Inject
 	ObjectMapper mapper;
