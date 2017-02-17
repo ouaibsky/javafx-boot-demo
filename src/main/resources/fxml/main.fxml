@@ -9,6 +9,9 @@
 
 <!--stylesheets="@modena_dark.css"-->
 
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
 <BorderPane id="borderPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.icroco.boot.javafx.MainPanePresenter">
    <bottom>
       <StatusBar fx:id="bottomStatusBar" BorderPane.alignment="CENTER" />
@@ -23,7 +26,8 @@
                <children>
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#referentialOnClicked" text="Referential" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#findRequestOnClicked" text="Find Request" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#scenarioOnClicked" text="Scenario" VBox.vgrow="ALWAYS" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#scenarioOnClicked" text="Scenario" />
+                  <Label maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS"></Label>
                </children>
             </VBox>
          </left>
