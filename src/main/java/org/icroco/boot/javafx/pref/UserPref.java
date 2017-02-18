@@ -31,22 +31,35 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserPref {
-	String test;
-	SalesAccount salesAccount;
-	TraderAccount traderAccount;
+
 
 	@JsonIgnore
 	@Getter(AccessLevel.NONE)
 	@Setter(AccessLevel.NONE)
-	SimpleStringProperty login = new SimpleStringProperty("test");
-
-	@JsonProperty("login")
-	public String getLogin() {
-		return this.login.get();
+	SimpleStringProperty salesLogin = new SimpleStringProperty(System.getProperty("user.name"));
+	@JsonProperty("salesLogin")
+	public String getSalesLogin() {
+		return this.salesLogin.get();
 	}
 
-	@JsonProperty("login")
-	public void setLogin(final String login) {
-		this.login.setValue(login);
+	@JsonProperty("salesLogin")
+	public void setSalesLogin(final String login) {
+		this.salesLogin.setValue(login);
+	}
+
+	@JsonIgnore
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
+	SimpleStringProperty traderLogin = new SimpleStringProperty(System.getProperty("user.name"));
+
+
+	@JsonProperty("traderLogin")
+	public String getTraderLogin() {
+		return this.traderLogin.get();
+	}
+
+	@JsonProperty("traderLogin")
+	public void setTraderLogin(final String login) {
+		this.traderLogin.setValue(login);
 	}
 }

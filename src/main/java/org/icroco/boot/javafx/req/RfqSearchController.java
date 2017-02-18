@@ -12,6 +12,7 @@ import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 import org.icroco.boot.javafx.MainPane;
+import org.icroco.boot.javafx.pref.UserPref;
 
 import javax.inject.Inject;
 import java.util.UUID;
@@ -24,6 +25,9 @@ public class RfqSearchController {
 
 	@Inject
     MainPane starter;
+
+	@Inject
+    UserPref userPref;
 
 	@FXML
     CustomTextField idTextField;

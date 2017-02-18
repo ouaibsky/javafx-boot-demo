@@ -5,6 +5,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.utils.FontAwesomeIconFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
 import javafx.scene.control.Button;
@@ -14,11 +15,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
-import org.controlsfx.control.HiddenSidesPane;
-import org.controlsfx.control.PopOver;
-import org.controlsfx.control.PropertySheet;
+import org.controlsfx.control.*;
 import org.controlsfx.control.PropertySheet.Item;
-import org.controlsfx.control.StatusBar;
 import org.controlsfx.property.BeanProperty;
 import org.icroco.boot.javafx.config.MyConfig;
 import org.icroco.boot.javafx.pref.UserPref;
@@ -118,6 +116,8 @@ public class MainPanePresenter {
         indicator.setProgress(100);
         indicator.setVisible(false);
         bottomStatusBar.getRightItems().add(indicator);
+
+        TaskProgressView<Task<?>> taskView = new TaskProgressView<>();
     }
 
     protected final <T> T getTargetObject(Object proxy) throws Exception {

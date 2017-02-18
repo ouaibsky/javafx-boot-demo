@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.Label?>
-<BorderPane id="borderPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.icroco.boot.javafx.MainPanePresenter">
+<BorderPane id="borderPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.icroco.boot.javafx.MainPanePresenter">
    <bottom>
       <StatusBar fx:id="bottomStatusBar" BorderPane.alignment="CENTER" />
    </bottom>

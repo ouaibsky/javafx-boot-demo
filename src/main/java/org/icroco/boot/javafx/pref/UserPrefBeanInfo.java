@@ -20,7 +20,8 @@ import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 
 public class UserPrefBeanInfo extends SimpleBeanInfo {
-	private static final BeanDescriptor beanDescriptor = new BeanDescriptor(UserPrefBeanInfo.class);
+	private static final BeanDescriptor beanDescriptor = new BeanDescriptor(
+			UserPrefBeanInfo.class);
 	private static PropertyDescriptor[] propDescriptors;
 
 	static {
@@ -40,26 +41,36 @@ public class UserPrefBeanInfo extends SimpleBeanInfo {
 	@Override
 	public PropertyDescriptor[] getPropertyDescriptors() {
 		if (propDescriptors == null) {
-			propDescriptors = new PropertyDescriptor[1];
+			propDescriptors = new PropertyDescriptor[2];
 			try {
-				propDescriptors[0] = new PropertyDescriptor("login", UserPref.class, "getLogin", "setLogin");
-				propDescriptors[0].setDisplayName("Login");
+				propDescriptors[0] = new PropertyDescriptor("salesLogin", UserPref.class,
+						"getSalesLogin", "setSalesLogin");
+				propDescriptors[0].setDisplayName("Sales Login");
+				propDescriptors[1] = new PropertyDescriptor("traderLogin", UserPref.class,
+						"getTraderLogin", "setTraderLogin");
+				propDescriptors[1].setDisplayName("Trader Login");
 
-//				CustomPropertyDescriptor cdp = new CustomPropertyDescriptor("id", SampleBean.class, "getId", "setId");
-//				cdp.setDisplayName("Id");
-//				cdp.setEditable(false);
-//				propDescriptors[0] = cdp;
-//				propDescriptors[1] = new PropertyDescriptor("firstName", SampleBean.class, "getFirstName", "setFirstName");
-//				propDescriptors[1].setDisplayName("First Name");
-//				propDescriptors[2] = new PropertyDescriptor("lastName", SampleBean.class, "getLastName", "setLastName");
-//				propDescriptors[2].setDisplayName("Last Name");
-//				propDescriptors[3] = new PropertyDescriptor("address", SampleBean.class, "getAddress", "setAddress");
-//				propDescriptors[3].setDisplayName("Address");
-//				propDescriptors[3].setPropertyEditorClass(PopupPropertyEditor.class);
-//				propDescriptors[4] = new PropertyDescriptor("hiddenValue", SampleBean.class, "getHiddenValue", "setHiddenValue");
-//				propDescriptors[4].setDisplayName("Hidden Value");
-//				propDescriptors[4].setHidden(true);
-			} catch (IntrospectionException ex) {
+				// CustomPropertyDescriptor cdp = new CustomPropertyDescriptor("id",
+				// SampleBean.class, "getId", "setId");
+				// cdp.setDisplayName("Id");
+				// cdp.setEditable(false);
+				// propDescriptors[0] = cdp;
+				// propDescriptors[1] = new PropertyDescriptor("firstName",
+				// SampleBean.class, "getFirstName", "setFirstName");
+				// propDescriptors[1].setDisplayName("First Name");
+				// propDescriptors[2] = new PropertyDescriptor("lastName",
+				// SampleBean.class, "getLastName", "setLastName");
+				// propDescriptors[2].setDisplayName("Last Name");
+				// propDescriptors[3] = new PropertyDescriptor("address",
+				// SampleBean.class, "getAddress", "setAddress");
+				// propDescriptors[3].setDisplayName("Address");
+				// propDescriptors[3].setPropertyEditorClass(PopupPropertyEditor.class);
+				// propDescriptors[4] = new PropertyDescriptor("hiddenValue",
+				// SampleBean.class, "getHiddenValue", "setHiddenValue");
+				// propDescriptors[4].setDisplayName("Hidden Value");
+				// propDescriptors[4].setHidden(true);
+			}
+			catch (IntrospectionException ex) {
 				ex.printStackTrace();
 			}
 		}

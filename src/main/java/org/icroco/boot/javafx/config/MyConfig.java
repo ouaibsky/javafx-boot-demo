@@ -17,11 +17,11 @@ package org.icroco.boot.javafx.config;/*
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.icroco.boot.javafx.MainPanePresenter;
-import org.icroco.boot.javafx.pref.SalesAccount;
 import org.icroco.boot.javafx.pref.UserPref;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
 
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
@@ -29,6 +29,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Configuration
 @AutoConfigureBefore(MainPanePresenter.class)
@@ -49,6 +51,11 @@ public class MyConfig {
 	}
 
 	@Bean
+	ExecutorService executorService() {
+		return Executors.newCachedThreadPool(new CustomizableThreadFactory("task"));
+	}
+
+	@Bean
 	UserPref userPref(ObjectMapper mapper) {
 		File f = new File(outputFileName);
 		UserPref pref = null;
@@ -66,10 +73,6 @@ public class MyConfig {
 		}
 
 		pref = new UserPref();
-		pref.setSalesAccount(SalesAccount.builder().login(System.getProperty("user.name")).build());
-				//pref.(SalesAccount.builder().login(System.getProperty("user.name")).build())
-				//.foo(new SimpleStringProperty(null, "foo", System.getProperty("user.name")))
-				//.build();
 		return pref;
 	}
 
