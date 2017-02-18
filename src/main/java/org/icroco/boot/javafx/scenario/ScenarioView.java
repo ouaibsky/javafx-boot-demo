@@ -1,4 +1,4 @@
-package org.icroco.boot.javafx.scenario.req;
+package org.icroco.boot.javafx.scenario;
 
 import de.felixroske.jfxsupport.AbstractFxmlView;
 import de.felixroske.jfxsupport.FXMLView;

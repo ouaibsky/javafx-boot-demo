@@ -92,7 +92,11 @@
         <!--compile 'de.jensd:fontawesomefx-weathericons:2.0.10-3'-->
         <!--compile 'de.jensd:fontawesomefx-controls:8.14'-->
 
-
+        <dependency>
+            <groupId>org.fxmisc.richtext</groupId>
+            <artifactId>richtextfx</artifactId>
+            <version>0.7-M3</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>

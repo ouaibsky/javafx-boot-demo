@@ -11,8 +11,8 @@ import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
 import org.controlsfx.control.*;
@@ -23,7 +23,7 @@ import org.icroco.boot.javafx.pref.UserPref;
 import org.icroco.boot.javafx.pref.UserPrefBeanInfo;
 import org.icroco.boot.javafx.ref.UnderlyingView;
 import org.icroco.boot.javafx.req.RfqSearchView;
-import org.icroco.boot.javafx.scenario.req.ScenarioView;
+import org.icroco.boot.javafx.scenario.ScenarioView;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -70,7 +70,8 @@ public class MainPanePresenter {
     private PropertySheet propertySheet = new PropertySheet();
 
     @FXML
-    private ScrollPane mainScrollPane;
+    private StackPane pane;
+    //private ScrollPane mainScrollPane;
 
     @FXML
     public void initialize() {
@@ -131,15 +132,15 @@ public class MainPanePresenter {
 
     public void referentialOnClicked(MouseEvent mouseEvent) {
         log.info("clicked: "+name);
-        mainScrollPane.setContent(underlyingView.getView());
+        pane.getChildren().setAll(underlyingView.getView());
     }
 
     public void findRequestOnClicked(MouseEvent mouseEvent) {
-        mainScrollPane.setContent(rfqSearchView.getView());
+        pane.getChildren().setAll(rfqSearchView.getView());
 
     }
 
     public void scenarioOnClicked(MouseEvent mouseEvent) {
-        mainScrollPane.setContent(scenarioView.getView());
+        pane.getChildren().setAll(scenarioView.getView());
     }
 }
