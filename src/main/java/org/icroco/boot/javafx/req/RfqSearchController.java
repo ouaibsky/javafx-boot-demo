@@ -35,12 +35,16 @@ public class RfqSearchController {
 
 	@Inject
 	MainPane starter;
+
 	@Inject
 	UserPref userPref;
+
 	@FXML
 	CustomTextField idTextField;
+
 	@FXML
 	TreeTableView<JsonNode> treeTableView;
+
 	@FXML
 	ScrollPane scrollPane;
 	private GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
@@ -90,7 +94,7 @@ public class RfqSearchController {
 				.product(Product.builder().underlyingId("SG").build()).build()));
 		Request req = Request.builder().bizId(123).uuid(UUID.randomUUID())
 				.salesName("foo").counterPart("Foo")
-				// .legs(legs)
+				.legs(legs)
 				.build();
 		final JsonNode pathItem = new ObjectMapper().valueToTree(req);
 		JsonNodeTreeItem root = JsonNodeTreeItem.createNode(pathItem);
@@ -100,6 +104,7 @@ public class RfqSearchController {
 		treeTableView.setRoot(root);
 
 		TreeTableColumn<JsonNode, String> keyColumn = new TreeTableColumn<>("Key");
+		keyColumn.setId("keyC");
 
 		keyColumn.setCellValueFactory(
 				new Callback<TreeTableColumn.CellDataFeatures<JsonNode, String>, ObservableValue<String>>() {
@@ -130,8 +135,10 @@ public class RfqSearchController {
 					}
 				});
 		valueColumn.setPrefWidth(200);
+        valueColumn.setId("valueC");
 
-		treeTableView.getColumns().setAll(keyColumn, valueColumn);
+
+        treeTableView.getColumns().setAll(keyColumn, valueColumn);
 
 		root.setExpanded(true);
 		return treeTableView;
@@ -308,4 +315,13 @@ public class RfqSearchController {
 
 		return FXCollections.emptyObservableList();
 	}
+
+    private void expandcollapseTreeView(TreeItem<?> item, boolean expandOrCollapse){
+        if(item != null && !item.isLeaf()){
+            item.setExpanded(expandOrCollapse);
+            for(TreeItem<?> child:item.getChildren()){
+                expandcollapseTreeView(child, expandOrCollapse);
+            }
+        }
+    }
 }

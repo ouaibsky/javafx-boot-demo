@@ -1,40 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.HiddenSidesPane?>
-<?import org.controlsfx.control.StatusBar?>
-
 <!--stylesheets="@modena_dark.css"-->
 
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.StatusBar?>
 <BorderPane id="borderPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.icroco.boot.javafx.MainPanePresenter">
    <bottom>
       <StatusBar fx:id="bottomStatusBar" BorderPane.alignment="CENTER" />
    </bottom>
-   <center>
-      <HiddenSidesPane fx:id="hiddenPane" BorderPane.alignment="CENTER">
-         <content>
-            <StackPane fx:id="pane" focusTraversable="false" />
-         </content>
-         <left>
-            <VBox fx:id="actionMenu" prefHeight="413.0" prefWidth="174.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#referentialOnClicked" text="Referential" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#findRequestOnClicked" text="Find Request" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#scenarioOnClicked" text="Scenario" />
-                  <Label maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS"></Label>
-               </children>
-            </VBox>
-         </left>
-      </HiddenSidesPane>
-   </center>
+   <!--<center>-->
+      <!--<HiddenSidesPane fx:id="hiddenPane" BorderPane.alignment="CENTER">-->
+         <!--<content>-->
+            <!--<StackPane fx:id="pane" focusTraversable="false" />-->
+         <!--</content>-->
+         <!--<left>-->
+            <!--<VBox fx:id="actionMenu" prefHeight="413.0" prefWidth="174.0" BorderPane.alignment="CENTER">-->
+               <!--<children>-->
+                  <!--<Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#referentialOnClicked" text="Referential" />-->
+                  <!--<Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#findRequestOnClicked" text="Find Request" />-->
+                  <!--<Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#scenarioOnClicked" text="Scenario" />-->
+                  <!--<Label maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS"></Label>-->
+               <!--</children>-->
+            <!--</VBox>-->
+         <!--</left>-->
+      <!--</HiddenSidesPane>-->
+   <!--</center>-->
    <top>
       <StatusBar fx:id="topStatusBar" text="" BorderPane.alignment="CENTER" />
    </top>
+   <left>
+      <Accordion fx:id="accordion" BorderPane.alignment="CENTER">
+        <panes>
+          <TitledPane animated="true" text="Request">
+            <content>
+                  <VBox>
+                     <children>
+                        <Hyperlink maxWidth="1.7976931348623157E308" onMouseClicked="#findRequestClicked" text="Find" />
+                     </children>
+                  </VBox>
+            </content>
+          </TitledPane>
+          <TitledPane animated="true" text="Scenario">
+            <content>
+                <VBox>
+                    <children>
+                        <Hyperlink maxWidth="1.7976931348623157E308" onMouseClicked="#loadScenarioClicked" text="Load" />
+                    </children>
+                </VBox>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Referential">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+   </left>
+    <center>
+        <StackPane fx:id="pane" focusTraversable="false" />
+    </center>
+
 </BorderPane>

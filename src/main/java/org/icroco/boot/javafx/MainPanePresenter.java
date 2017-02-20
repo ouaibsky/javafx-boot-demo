@@ -7,7 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.geometry.Side;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -15,8 +15,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import lombok.extern.slf4j.Slf4j;
-import org.controlsfx.control.*;
+import org.controlsfx.control.PopOver;
+import org.controlsfx.control.PropertySheet;
 import org.controlsfx.control.PropertySheet.Item;
+import org.controlsfx.control.StatusBar;
+import org.controlsfx.control.TaskProgressView;
 import org.controlsfx.property.BeanProperty;
 import org.icroco.boot.javafx.config.MyConfig;
 import org.icroco.boot.javafx.pref.UserPref;
@@ -61,7 +64,7 @@ public class MainPanePresenter {
     StatusBar bottomStatusBar;
 
     @FXML
-    HiddenSidesPane hiddenPane;
+    Accordion accordion;
 
     @FXML
     VBox actionMenu;
@@ -102,8 +105,9 @@ public class MainPanePresenter {
 
         popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_TOP);
         gear.setOnMouseClicked(e -> popOver.show(gear));
-        hiddenPane.setTriggerDistance(25);
-        hamburger.setOnMouseClicked((MouseEvent e) -> hiddenPane.setPinnedSide(hiddenPane.getPinnedSide() != null ? null : Side.LEFT));
+        hamburger.setOnMouseClicked((MouseEvent e) -> accordion.setVisible(!accordion.isVisible()));
+
+
         topStatusBar.getRightItems().add(gear);
         topStatusBar.getLeftItems().add(hamburger);
         findRequestOnClicked(null);
@@ -117,6 +121,7 @@ public class MainPanePresenter {
         indicator.setProgress(100);
         indicator.setVisible(false);
         bottomStatusBar.getRightItems().add(indicator);
+        accordion.setExpandedPane(accordion.getPanes().get(0));
 
         TaskProgressView<Task<?>> taskView = new TaskProgressView<>();
     }
@@ -136,11 +141,18 @@ public class MainPanePresenter {
     }
 
     public void findRequestOnClicked(MouseEvent mouseEvent) {
-        pane.getChildren().setAll(rfqSearchView.getView());
 
     }
 
     public void scenarioOnClicked(MouseEvent mouseEvent) {
+        pane.getChildren().setAll(scenarioView.getView());
+    }
+
+    public void findRequestClicked(MouseEvent mouseEvent) {
+        pane.getChildren().setAll(rfqSearchView.getView());
+    }
+
+    public void loadScenarioClicked(MouseEvent mouseEvent) {
         pane.getChildren().setAll(scenarioView.getView());
     }
 }

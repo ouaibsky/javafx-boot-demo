@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy(proxyTargetClass = false)
-public class BootJavafxApplication extends AbstractJavaFxApplicationSupport  {
+public class BootJavafxApplication extends AbstractJavaFxApplicationSupport {
 
 	@Override
 	public void start(Stage stage) throws Exception {

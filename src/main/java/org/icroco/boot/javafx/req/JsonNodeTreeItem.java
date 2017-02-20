@@ -16,6 +16,7 @@ package org.icroco.boot.javafx.req;/*
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
@@ -29,7 +30,7 @@ public class JsonNodeTreeItem extends TreeItem<JsonNode> {
     public JsonNodeTreeItem(String name, JsonNode value) {
         super(value);
         this.name = name;
-        System.out.println("key: "+name+" value: "+value);
+        //System.out.println("key: "+name+" value: "+value+" leaf:"+value.size());
     }
 
 
@@ -63,8 +64,14 @@ public class JsonNodeTreeItem extends TreeItem<JsonNode> {
 
         JsonNode path = treeItem.getValue();
         if (path != null && !path.isValueNode()) {
-            ObservableList<TreeItem<JsonNode>> childrens = FXCollections.observableArrayList();;
-            path.fields().forEachRemaining(j -> childrens.add(createNode(j.getKey(), j.getValue())));
+            ObservableList<TreeItem<JsonNode>> childrens = FXCollections.observableArrayList();
+            if (path instanceof ArrayNode) {
+                for (int i = 0; i < path.size(); i++) {
+                    childrens.add(createNode("["+i+"]", path.get(i)));
+                }
+            } else {
+                path.fields().forEachRemaining(j -> childrens.add(createNode(j.getKey(), j.getValue())));
+            }
             return childrens;
         }
         return FXCollections.emptyObservableList();

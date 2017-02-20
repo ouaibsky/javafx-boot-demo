@@ -16,6 +16,7 @@ package org.icroco.boot.javafx.config;/*
 
 import lombok.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -31,7 +32,7 @@ public class Request implements Comparable<Request> {
     UUID uuid;
     String salesName;
     String counterPart;
-//    Set<Leg> legs;
+    Set<Leg> legs;
 
 
     @Override

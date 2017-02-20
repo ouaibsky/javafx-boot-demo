@@ -23,12 +23,20 @@ waitStatus: 'then wait status' statusName timeoutInSecond?;
 statusName: STRING;
 timeoutInSecond: NUMBER;
 
-sendRfq: 'when the sales send a rfq' json;
+sendRfq: 'when the sales send a rfq' (json|smartrfq);
 
 sendPrice: 'send price' json;
 
+verifyRfq: uuid verifyStatement;
+
+uuid: STRING;
+
+verifyStatement: STRING STRING;
+
 sendOrderAccepted: 'send order accepted' json;
 
+
+smartrfq: STRING;
 
 json:   object
     |   array
