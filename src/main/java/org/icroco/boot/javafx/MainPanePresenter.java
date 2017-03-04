@@ -124,6 +124,7 @@ public class MainPanePresenter {
         accordion.setExpandedPane(accordion.getPanes().get(0));
 
         TaskProgressView<Task<?>> taskView = new TaskProgressView<>();
+        rfqSearchView.getView();
     }
 
     protected final <T> T getTargetObject(Object proxy) throws Exception {

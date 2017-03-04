@@ -13,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.controlsfx.control.textfield.CustomTextField;
@@ -44,6 +46,8 @@ public class RfqSearchController {
 
 	@FXML
 	TreeTableView<JsonNode> treeTableView;
+
+	private JsonNodeTreeItem root;
 
 	@FXML
 	ScrollPane scrollPane;
@@ -97,7 +101,7 @@ public class RfqSearchController {
 				.legs(legs)
 				.build();
 		final JsonNode pathItem = new ObjectMapper().valueToTree(req);
-		JsonNodeTreeItem root = JsonNodeTreeItem.createNode(pathItem);
+		root = JsonNodeTreeItem.createNode(pathItem);
 
 		final TreeTableView<JsonNode> treeTableView = new TreeTableView<>();
 		treeTableView.setShowRoot(true);
@@ -324,4 +328,13 @@ public class RfqSearchController {
             }
         }
     }
+
+	public void filterChanged(InputMethodEvent inputMethodEvent) {
+	}
+
+	public void onAction(ActionEvent actionEvent) {
+	}
+
+	public void keyTyped(KeyEvent keyEvent) {
+	}
 }
