@@ -1,48 +1,60 @@
 package org.icroco.boot.javafx;
 
-import javafx.scene.layout.Region;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
-import insidefx.undecorator.UndecoratorScene;
-import javafx.event.EventHandler;
+import javafx.application.Preloader;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy(proxyTargetClass = false)
+@Slf4j
 public class BootJavafxApplication extends AbstractJavaFxApplicationSupport {
 
 	@Override
+	public void init() throws Exception {
+		log.info("App Before Init");
+		super.init();
+		log.info("App After Init");
+	}
+
+	@Override
 	public void start(Stage stage) throws Exception {
-		setUserAgentStylesheet(STYLESHEET_MODENA);
+		//setUserAgentStylesheet(STYLESHEET_MODENA);
+		log.info("App Before start");
+
 		super.start(stage);
 
-		// The Undecorator as a Scene
-		final UndecoratorScene undecoratorScene = new UndecoratorScene(stage, (Region)stage.getScene().getRoot());
+//		// The Undecorator as a Scene
+//		final UndecoratorScene undecoratorScene = new UndecoratorScene(stage, (Region)stage.getScene().getRoot());
+//
+//		// Enable fade transition
+//		undecoratorScene.setFadeInTransition();
+//
+//        /*
+//         * Fade out transition on window closing request
+//         */
+//		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//			@Override
+//			public void handle(WindowEvent we) {
+//				we.consume();   // Do not hide yet
+//				undecoratorScene.setFadeOutTransition();
+//			}
+//		});
+//
+//		stage.setScene(undecoratorScene);
 
-		// Enable fade transition
-		undecoratorScene.setFadeInTransition();
+		log.info("App Before front");
 
-        /*
-         * Fade out transition on window closing request
-         */
-		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			@Override
-			public void handle(WindowEvent we) {
-				we.consume();   // Do not hide yet
-				undecoratorScene.setFadeOutTransition();
-			}
-		});
-
-		stage.setScene(undecoratorScene);
-
+		notifyPreloader(new Preloader.StateChangeNotification(
+				Preloader.StateChangeNotification.Type.BEFORE_START));
 		stage.toFront();
+		log.info("App After stage");
 	}
 
 	public static void main(String[] args) {
-		launchApp(BootJavafxApplication.class, MainPane.class, args);
+		launchApp(PreloaderFX.class, BootJavafxApplication.class, MainPane.class, args);
 	}
 
 }

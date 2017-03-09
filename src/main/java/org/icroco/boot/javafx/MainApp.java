@@ -34,10 +34,18 @@ Stage mainStage;
     }
 
     @Override
+    public void init() throws Exception {
+        super.init();
+        System.out.println("MainApp::init();");
+       // notifyPreloader(new Preloader.ProgressNotification(1/11));
+        //Thread.sleep(2000);
+    }
+
+    @Override
     public void start(final Stage initStage) throws Exception {
         System.out.println("MainApp::start();");
         this.mainStage = initStage;
-
+        System.out.println("initStage: "+initStage);
         longStart();
 
         ready.addListener((ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) -> {

@@ -14,6 +14,7 @@ package org.icroco.boot.javafx;/*
  * limitations under the License.
  */
 
+import javafx.animation.FadeTransition;
 import javafx.application.Preloader;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -28,6 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 public class PreloaderFX extends Preloader {
 
@@ -58,9 +60,11 @@ public class PreloaderFX extends Preloader {
         progressText.setAlignment(Pos.CENTER);
         splashLayout.setStyle(
                 "-fx-padding: 5; "
-                        + "-fx-background-color: white; "
+                        + "-fx-background-color: transparent; "
                         + "-fx-border-width:5; "
         );
+       // splashLayout.setStyle("-fx-padding: 5; -fx-background-color: cornsilk; -fx-border-width:5; -fx-border-color: linear-gradient(to bottom, chocolate, derive(chocolate, 50%));");
+
         splashLayout.setEffect(new DropShadow());
     }
 
@@ -77,6 +81,7 @@ public class PreloaderFX extends Preloader {
         stage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
         stage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
         stage.show();
+        System.out.println("stage: "+stage);
 
         this.stage = stage;
     }
@@ -98,7 +103,8 @@ public class PreloaderFX extends Preloader {
     @Override
     public void handleStateChangeNotification(StateChangeNotification evt) {
         //ignore, hide after application signals it is ready
-        System.out.println("PreloaderFx::handleStateChangeNotification(); state = " + evt.getType());
+        System.out.println("PreloaderFx:::handleStateChangeNotification(); state = " + evt.getType());
+
     }
 
     @Override
@@ -118,7 +124,12 @@ public class PreloaderFX extends Preloader {
         } else if (pn instanceof StateChangeNotification) {
             System.out.println("PreloaderFx::handleApplicationNotification(); state = " + ((StateChangeNotification) pn).getType());
             //hide after get any state update from application
-            stage.hide();
+            FadeTransition fadeSplash = new FadeTransition(Duration.seconds(0.6), splashLayout);
+            fadeSplash.setFromValue(1.0);
+            fadeSplash.setToValue(0.0);
+            fadeSplash.setOnFinished(actionEvent -> stage.hide());
+            fadeSplash.play();
+            //stage.hide();
         }
     }
 }
