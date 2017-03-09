@@ -38,19 +38,21 @@ public class PreloaderFX extends Preloader {
 
     public static final String APPLICATION_ICON
             = "http://cdn1.iconfinder.com/data/icons/Copenhagen/PNG/32/people.png";
+//    public static final String SPLASH_IMAGE
+//            = "http://fxexperience.com/wp-content/uploads/2010/06/logo.png";
     public static final String SPLASH_IMAGE
-            = "http://fxexperience.com/wp-content/uploads/2010/06/logo.png";
+            = "/1_onyx.jpeg";
 
     private Pane splashLayout;
     private ProgressBar loadProgress;
     private Label progressText;
-    private static final int SPLASH_WIDTH = 676;
-    private static final int SPLASH_HEIGHT = 227;
+    private static final int SPLASH_WIDTH = 1140;
+    private static final int SPLASH_HEIGHT = 445;
 
     @Override
     public void init() {
         ImageView splash = new ImageView(new Image(
-                SPLASH_IMAGE
+                getClass().getResourceAsStream(SPLASH_IMAGE)
         ));
         loadProgress = new ProgressBar();
         loadProgress.setPrefWidth(SPLASH_WIDTH - 20);

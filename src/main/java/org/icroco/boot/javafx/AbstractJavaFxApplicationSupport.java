@@ -1,10 +1,6 @@
 package org.icroco.boot.javafx;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-
 import com.sun.javafx.application.LauncherImpl;
-
 import de.felixroske.jfxsupport.AbstractFxmlView;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -13,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author Felix Roske 
@@ -56,11 +54,12 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 		//stage.initStyle(StageStyle.TRANSPARENT);
 		stage.show();
 
+        //stage.setOpacity(0.85);
 		scene.setFill(Color.TRANSPARENT); //Makes scene background transparent
 		FadeTransition fadeSplash = new FadeTransition(Duration.seconds(2), scene.getRoot());
 		fadeSplash.setFromValue(0.0);
 		fadeSplash.setToValue(1.0);
-		//fadeSplash.setOnFinished(actionEvent -> stage.initStyle(StageStyle.DECORATED));
+		//fadeSplash.setOnFinished(actionEvent -> stage.setOpacity(1));
 		fadeSplash.play();
 	}
 
