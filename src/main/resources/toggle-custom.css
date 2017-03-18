@@ -1,0 +1,14 @@
+/*.custom,
+    custom:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+*/
+
+.toggle-button,
+.button:focused {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    /*-fx-background-insets: 0, 1, 2;*/
+    -fx-background-insets: -1.4, 0, 1, 2;
+    /*-fx-background-radius: 5, 4, 3;*/
+}
