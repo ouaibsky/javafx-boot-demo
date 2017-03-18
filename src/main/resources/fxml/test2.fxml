@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane style="-fx-background-color: rgba(0,100, 100, 0.3); -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../onyxlogo.png" />
+         </image>
+      </ImageView>
+      <ProgressBar fx:id="progress" maxWidth="1.7976931348623157E308" prefWidth="450.0" progress="0.0" stylesheets="@../splash.css">
+         <StackPane.margin>
+            <Insets left="5.0" right="5.0" top="230.0" />
+         </StackPane.margin>
+      </ProgressBar>
+      <Label fx:id="label" alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="450.0" textFill="WHITE">
+         <StackPane.margin>
+            <Insets left="5.0" right="5.0" top="200.0" />
+         </StackPane.margin>
+      </Label>
+   </children>
+</StackPane>

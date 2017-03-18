@@ -16,8 +16,10 @@ package org.icroco.boot.javafx;/*
 
 import javafx.animation.FadeTransition;
 import javafx.application.Preloader;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -26,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -54,7 +57,7 @@ public class PreloaderFX extends Preloader {
         ImageView splash = new ImageView(new Image(
                 getClass().getResourceAsStream(SPLASH_IMAGE)
         ));
-        loadProgress = new ProgressBar();
+        loadProgress = new ProgressBar(0.4);
         loadProgress.setPrefWidth(SPLASH_WIDTH - 20);
         progressText = new Label("Loading . . .");
         splashLayout = new VBox();
@@ -74,12 +77,18 @@ public class PreloaderFX extends Preloader {
     public void start(Stage stage) throws Exception {
         System.out.println("PreloaderFx::start();");
 
+        Parent root1 = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("/fxml/test2.fxml"));
         //this.stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("Title");
         stage.getIcons().add(new Image(APPLICATION_ICON));
         stage.initStyle(StageStyle.UNDECORATED);
         final Rectangle2D bounds = Screen.getPrimary().getBounds();
-        stage.setScene(new Scene(splashLayout));
+        final Scene scene = new Scene(root2, Color.TRANSPARENT);
+        //scene.getStylesheets().add(getClass().getResource("/splash.css").toExternalForm());
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        stage.setAlwaysOnTop(true);
         stage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
         stage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
         stage.show();
