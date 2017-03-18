@@ -89,8 +89,8 @@ public class PreloaderFX extends Preloader {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.setAlwaysOnTop(true);
-        stage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
-        stage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
+        //stage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
+        //stage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
         stage.show();
         System.out.println("stage: "+stage);
 
